@@ -109,6 +109,12 @@ void handleNewMessages(int numNewMessages)
 {
   for (int i = 0; i < numNewMessages; i++)
   {
+    Serial.println(bot.messages[i].from_id);
+    
+    // ignore messages from users not in whitelist
+    if (bot.messages[i].from_id != MY_ID){
+      continue;
+    }
     String chat_id = bot.messages[i].chat_id;
     String text = bot.messages[i].text;
 
