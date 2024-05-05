@@ -89,8 +89,8 @@ void telegramSetup() {
   Serial.println(now);
 
   // clear screen
-  dma_display->drawRect(0, 0, dma_display->width(), dma_display->height(), myWHITE);
-  delay(500);
+  // dma_display->drawRect(0, 0, dma_display->width(), dma_display->height(), myWHITE);
+  // delay(500);
 
   drawHome();
 }
@@ -184,7 +184,14 @@ void mapLocationToLEDs(float lat, float lon, String chat_id)
   // Map LED ROW using define LED_ROWS and map against START_LAT and END_LAT
   int row = map(latPercentage, 0, 100, 0, LED_ROWS-1);
   // Map LED COL using define LED_COLS and map against START_LON and END_LON
-  int col = map(lonPercentage, 0, 100, 0, LED_COLS-1);
+  int col = map(lonPercentage, 0, 100, LED_COLS-1, 0);
+
+  if (row < 0 || row >= LED_ROWS || col < 0 || col >= LED_COLS)
+  {
+    Serial.println("Out of range");
+    mapLocationToLEDs(OUT_OF_RANGE_LAT, OUT_OF_RANGE_LON, chat_id);
+    return;
+  }
 
   // Ensure the row and col are within the LED bounds
   row = constrain(row, 0, LED_ROWS-1);

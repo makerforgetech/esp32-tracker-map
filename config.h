@@ -4,11 +4,16 @@
 const unsigned long BOT_MTBS = 10000; // mean time between scan messages
 
 // Top left of the map for mapping to LEDs
-#define START_LAT 55.989957
-#define START_LON -4.439556
+#define START_LAT 57.940524
+#define START_LON -5.972884
 // Bottom right of the map for mapping to LEDs
-#define END_LAT 51.404862
-#define END_LON 0.180951
+#define END_LAT 49.773646
+#define END_LON 1.483017
+
+
+// Out of range location (Azkaban)
+#define OUT_OF_RANGE_LAT 57.574840
+#define OUT_OF_RANGE_LON 0.742179
 
 // LED Count
 #define LED_ROWS 96
